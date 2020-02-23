@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
-import {RequestApi} from '@/interfaces/request.interfaces'
-import {Movie} from '@/interfaces/movie.interfaces'
+import {RequestApi} from '@/interfaces/request.interfaces';
+import {Movie} from '@/interfaces/movie.interfaces';
+import {CallBack} from '@/interfaces/call-back.interfaces'
 
 class MovieResources {
   getPopularFilms(page: number): Promise<AxiosResponse<Movie.IResponse<Movie.IMovieItem[]>>>   {
@@ -27,8 +28,8 @@ class MovieResources {
     return axios.get(`${RequestApi.ApiKey.BASE_URL}movie/${id}/recommendations?api_key=${RequestApi.ApiKey.API_KEY}&page=1`) as Promise<AxiosResponse<Movie.IResponse<Movie.IMovieItem[]>>>
   }
 
-  getCallBack(id: number): Promise<AxiosResponse<Movie.IResponse<any>>>  {
-    return axios.get(`${RequestApi.ApiKey.BASE_URL}movie/${id}/reviews?api_key=${RequestApi.ApiKey.API_KEY}&page=1`) as Promise<AxiosResponse<Movie.IResponse<any>>>
+  getCallBack(id: number): Promise<AxiosResponse<Movie.IResponse<CallBack.ICallBackItem[]>>>  {
+    return axios.get(`${RequestApi.ApiKey.BASE_URL}movie/${id}/reviews?api_key=${RequestApi.ApiKey.API_KEY}&page=1`) as Promise<AxiosResponse<Movie.IResponse<CallBack.ICallBackItem[]>>>;
   }
 }
 

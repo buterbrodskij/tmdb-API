@@ -3,10 +3,13 @@ import VueRouter from 'vue-router';
 import indexPage from '@/views/index.vue';
 import NotFound from '@/views/notFound.vue'
 import MoviePage from '@/views/movie-page.vue'
+import TvPage from '@/views/tv-page.vue'
 Vue.use(VueRouter);
 
 export enum ROUTE_NAME { 
-MOVIE_FULL_PAGE = 'movie-full-page'
+  MOVIE_FULL_PAGE = 'movie-full-page',
+  AUTH = 'auth',
+  TV = 'tv-page',
 }
 
 
@@ -27,9 +30,14 @@ const routes: any = [
   },
   {
     path: '/movie-full-page/:id',
-    name: 'movie-full-page',
+    name: ROUTE_NAME.MOVIE_FULL_PAGE,
     component: MoviePage,
-  }
+  },
+  {
+    path: '/tv-page',
+    name: ROUTE_NAME.TV,
+    component: TvPage,
+  },
 ];
 
 const router = new VueRouter({

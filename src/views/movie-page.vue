@@ -33,7 +33,7 @@
     <div class="container">
       <div class="recommendations-films">
         <h2 class="recommendations-films__title">Recommendations Films</h2>
-        <el-carousel type="card" height="350px" arrow="always">
+        <el-carousel v-if="recommendationsFilms.length" type="card" height="350px" arrow="always">
           <el-carousel-item v-for="(item, index) in recommendationsFilms" :key="index" :autoplay="false">
             <div class="recommendations-films__item"  @click="recommendationsFilmsInfo(item.id)">
               <div class="recommendations-films__item-text">
@@ -43,11 +43,13 @@
             </div>
           </el-carousel-item>
         </el-carousel>
+
+        <div class="empty" v-else>empty</div>
       </div>
 
       <div class="call-back">
         <h2 class="call-back__title">Call Back</h2>
-        <el-carousel height="350px" direction="vertical" arrow="always">
+        <el-carousel v-if="callBack.results.length" height="350px" direction="vertical" arrow="always">
           <el-carousel-item v-for="(item, index) in callBack.results" :key="index">
             <div class="call-back-item">
               <h3 class="call-back-item__title">{{ item.author }}</h3>
@@ -56,6 +58,7 @@
             </div>
           </el-carousel-item>
         </el-carousel>
+        <div class="empty" v-else>empty</div>
       </div>
     </div>
   </div>
@@ -66,7 +69,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import {Movie} from '../interfaces/movie.interfaces';
 import {ROUTE_NAME} from '../router/index';
 import {MovieFullPage} from '../interfaces/movie-page.interfaces';
-import {CallBack} from '../interfaces/call-back'
+import {CallBack} from '../interfaces/call-back.interfaces'
  @Component({
   components: {},
 })
@@ -99,7 +102,7 @@ baseUrl: string = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2';
     return this.$store.state.movie.callBack;
   }
 
- async recommendationsFilmsInfo(id) {
+ async recommendationsFilmsInfo(id: string) {
    if (this.$router.currentRoute.params.id !== id)
     this.$router.replace({params: {id: id}});
      this.onPageLoad();
@@ -300,5 +303,12 @@ baseUrl: string = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2';
 
   body {
     overflow-x: hidden;
+  }
+
+  .empty {
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+    margin: 20px 0px;
   }
 </style>

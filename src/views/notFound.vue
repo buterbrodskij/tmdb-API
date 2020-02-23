@@ -1,5 +1,5 @@
 <template>
-  <div class="not-found-wrap"></div>
+  <div class="not-found-wrap">404</div>
 </template>
 
 <script lang="ts">

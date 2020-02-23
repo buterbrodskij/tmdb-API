@@ -6,7 +6,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import "normalize.css"
 import 'bootstrap/dist/css/bootstrap.css'
+const VueCookie = require('vue-cookie')
 
+
+Vue.use(VueCookie)
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false;

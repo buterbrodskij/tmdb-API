@@ -10,11 +10,11 @@ export namespace Movie {
   }
 
   export interface IMovieState {
-    filmsList: IMovieItem[];
+    filmsList: IResponse<IMovieItem[]>;
     moreInfo: IMoreInfo;
     activeType: IFilters.FiltersType;
-    recommendationsFilms: IMovieItem[];
-    callBack: Movie.IResponse<CallBack.ICallBackItem[]>;
+    recommendationsFilms: IResponse<IMovieItem[]>;
+    callBack: IResponse<CallBack.ICallBackItem[]>;
   }
 
   export interface IMovieItem {
