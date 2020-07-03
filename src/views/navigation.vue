@@ -1,14 +1,14 @@
 <template>
   <div class="nav-wrap">
     <el-menu
-    :default-active="activeIndex"
+    default-active="0"
     class="el-menu-demo"
     mode="horizontal"
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
       <el-menu-item index="main"><router-link to="/">Фильмы</router-link></el-menu-item>
-      <el-menu-item index="TV"><router-link :to="routerNane.TV">TV</router-link></el-menu-item>
+      <el-menu-item index="TV"><router-link :to="routerName.TV">TV</router-link></el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -21,8 +21,9 @@ import {ROUTE_NAME} from '../router/index';
   components: {},
 })
 export default class TopNavigation extends Vue {
-  routerNane = ROUTE_NAME;
+  routerName = ROUTE_NAME;
 }
+
 </script>
 
 

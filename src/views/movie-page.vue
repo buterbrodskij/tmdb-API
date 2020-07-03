@@ -9,7 +9,7 @@
         <div class="movie-info__header-content__info">
             <h2 class="movie-info__header-content__info__title">{{moreInfo.title}}</h2>
             <div class="movie-info__header-content__info__raiting">
-              <el-progress type="dashboard" color="#6e07e3" stroke-width="16" :percentage="moreInfo.vote_average * 10"></el-progress>
+              <el-progress type="dashboard" color="#6e07e3" :stroke-width="Number(16)" :percentage="moreInfo.vote_average * 10"></el-progress>
               <ul class="movie-info__header-content__info__raiting-geners">
                 <li v-for="(item, index) in moreInfo.genres" :key="index" class="movie-info__header-content__info__raiting-geners__item">
                   <el-tag type="info" color="#6e07e3">{{item.name}}</el-tag>
@@ -70,6 +70,7 @@ import {Movie} from '../interfaces/movie.interfaces';
 import {ROUTE_NAME} from '../router/index';
 import {MovieFullPage} from '../interfaces/movie-page.interfaces';
 import {CallBack} from '../interfaces/call-back.interfaces'
+
  @Component({
   components: {},
 })
@@ -85,8 +86,8 @@ baseUrl: string = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2';
  async onPageLoad() {
     if (Number(this.$router.currentRoute.params.id) !== this.moreInfo.id) {
       await this.$store.dispatch('movie/getMoreInfo', Number(this.$router.currentRoute.params.id));
-      await await this.$store.dispatch('movie/requestForMoviePage', {id: this.moreInfo.id, type: MovieFullPage.MoviePageRequetsType.RECOMMEDATIONS_FILMS});
-      await await this.$store.dispatch('movie/requestForMoviePage', {id: this.moreInfo.id, type: MovieFullPage.MoviePageRequetsType.CALL_BACK});
+      await this.$store.dispatch('movie/requestForMoviePage', {id: this.moreInfo.id, type: MovieFullPage.MoviePageRequetsType.RECOMMEDATIONS_FILMS});
+      await this.$store.dispatch('movie/requestForMoviePage', {id: this.moreInfo.id, type: MovieFullPage.MoviePageRequetsType.CALL_BACK});
     }
   }
 
@@ -104,8 +105,8 @@ baseUrl: string = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2';
 
  async recommendationsFilmsInfo(id: string) {
    if (this.$router.currentRoute.params.id !== id)
-    this.$router.replace({params: {id: id}});
-     this.onPageLoad();
+    await this.$router.replace({params: {id: id}});
+    await this.onPageLoad();
   }
 }
 
